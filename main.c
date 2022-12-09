@@ -15,7 +15,8 @@ static void signal_handler(int signo);
 int main()
 {   
     struct node *head = NULL;
-    populateList(&head);
+    // populateList(&head);
+    parse_csv(&head);
     printHelp();
 
 

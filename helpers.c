@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "linkedlist.h"
+#include <stdlib.h>
+#include <string.h>
+#define DELIM ";"
 
 void parse_user_input(char *name, char *surname, char *email, char *number)
 {
@@ -95,16 +98,15 @@ void printHelp(){
     printf("8 - exit()\n");
 }
 
-void populateList(struct node **head){
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222220"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222221"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222222"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222223"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222224"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222225"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222226"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222227"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222228"));
-    add_to_list(head, createNode("Jonas", "Jonauskas", "jonas@gmail.com", "862222229"));
+void parse_csv(struct node **head){
+    FILE* f = fopen("Addresses.csv", "r");
+    char name[25], surname[25], email[50], number[25];
+    int a = 0;
+    char line[120];
+
+    while(fscanf(f, "%[^;];%[^;];%[^;];%[^;]", name, surname, email, number) == 4){
+        fgets(line, sizeof(line), f); // čia nelabai gražiai taip atrodo, bet atrodo, kad fscanf() nepereina prie kitos eilutės, tai nelabai radau geresnių būdų
+        add_to_list(head, createNode(name, surname, email, number));
+    }
 }
 

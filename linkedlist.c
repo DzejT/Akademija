@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "linkedlist.h"
-#define DELIM " "
 
 
 struct node* createNode(char *name, char *surname, char *email, char *number)

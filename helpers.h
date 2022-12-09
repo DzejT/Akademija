@@ -8,4 +8,4 @@ void find_at_position(struct node *list);
 void find_by_keyword(struct node *list);
 void delete_at_position(struct node **list);
 void printHelp();
-void populateList(struct node **head);
+void parse_csv(struct node **head);
